@@ -27,4 +27,9 @@ public class NumberToken extends Token {
     public int getValue() {
         return this.value;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ": " + this.value;
+    }
 }

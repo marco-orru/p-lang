@@ -22,4 +22,13 @@ public class Token {
     public TokenKind getKind() {
         return this.kind;
     }
+
+    /**
+     * Gets a string representation of this token.
+     * @return A string representation of the token.
+     */
+    @Override
+    public String toString() {
+        return this.kind.toString();
+    }
 }

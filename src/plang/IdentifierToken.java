@@ -26,4 +26,9 @@ public class IdentifierToken extends Token {
     public String getIdentifier() {
         return this.identifier;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ": " + this.identifier;
+    }
 }
