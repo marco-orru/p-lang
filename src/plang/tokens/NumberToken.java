@@ -1,4 +1,4 @@
-package plang;
+package plang.tokens;
 
 /**
  * Represents a numerical token.

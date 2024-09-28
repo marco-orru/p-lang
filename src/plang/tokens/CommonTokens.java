@@ -1,4 +1,4 @@
-package plang;
+package plang.tokens;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ public final class CommonTokens {
      * @throws IllegalArgumentException If the specified kind determines a dynamic token
      * (e.g., {@link NumberToken} or {@link IdentifierToken}).
      */
-    public Token get(TokenKind kind) {
+    public static Token get(TokenKind kind) {
         if (kind == TokenKind.NUMBER || kind == TokenKind.IDENTIFIER)
             throw new IllegalArgumentException("A token of the specified kind is dynamic and cannot be cached");
 

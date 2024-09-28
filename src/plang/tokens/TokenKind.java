@@ -1,4 +1,4 @@
-package plang;
+package plang.tokens;
 
 /**
  * Defines the kinds of {@link Token}.
@@ -14,7 +14,7 @@ public enum TokenKind {
     IDENTIFIER,
 
     /** The token is the logical not operator ({@code !}). */
-    NOT,
+    LOGICAL_NOT,
 
     /** The token is a left parenthesis ({@code (}). */
     LEFT_PARENTHESIS,
