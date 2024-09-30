@@ -7,7 +7,7 @@ public final class GeBoolExprAstNode extends BoolExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 8;
+    public static final int ID = 5;
 
     /**
      * Initializes a new {@link GeBoolExprAstNode}.

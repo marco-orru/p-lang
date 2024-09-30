@@ -7,7 +7,7 @@ public final class LeBoolExprAstNode extends BoolExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 7;
+    public static final int ID = 3;
 
     /**
      * Initializes a new {@link LeBoolExprAstNode}.

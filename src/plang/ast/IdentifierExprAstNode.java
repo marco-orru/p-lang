@@ -6,7 +6,7 @@ public final class IdentifierExprAstNode extends ExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 5;
+    public static final int ID = 5;
 
     /**
      * The identifier token contained in this node
@@ -38,6 +38,6 @@ public final class IdentifierExprAstNode extends ExprAstNode {
 
     @Override
     public String toString() {
-        return identifier.getIdentifier();
+        return identifier.getLexeme();
     }
 }

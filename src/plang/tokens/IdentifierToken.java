@@ -27,7 +27,7 @@ public class IdentifierToken extends Token {
      *
      * @return The identifier lexeme.
      */
-    public String getIdentifier() {
+    public String getLexeme() {
         return this.identifier;
     }
 

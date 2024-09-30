@@ -9,7 +9,7 @@ public final class NumberExprAstNode extends ExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 4;
+    public static final int ID = 4;
     /**
      * The number token contained in this node.
      */

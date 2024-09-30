@@ -7,7 +7,7 @@ public final class EndIfExAstNode extends IfExAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 0;
+    public static final int ID = 0;
 
     /**
      * Initializes a new {@link EndIfExAstNode}.

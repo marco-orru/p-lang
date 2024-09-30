@@ -7,7 +7,7 @@ public final class WhileStatAstNode extends StatAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 3;
+    public static final int ID = 3;
 
     /**
      * Initializes a new {@link WhileStatAstNode}.

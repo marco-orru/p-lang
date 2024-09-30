@@ -7,35 +7,35 @@ public final class OrBoolExprAstNode extends BoolExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 2;
+    public static final int ID = 7;
 
     /**
      * Initializes a new {@link OrBoolExprAstNode}.
      *
-     * @param expr1 The first {@code <expr>} child node.
-     * @param expr2 The second {@code <expr>} child node.
+     * @param boolExpr1 The first {@code <boolexpr>} child node.
+     * @param boolExpr2 The second {@code <boolexpr>} child node.
      */
-    public OrBoolExprAstNode(ExprAstNode expr1, ExprAstNode expr2) {
-        super(expr1, expr2);
+    public OrBoolExprAstNode(BoolExprAstNode boolExpr1, BoolExprAstNode boolExpr2) {
+        super(boolExpr1, boolExpr2);
     }
 
     /**
-     * Gets the first {@link ExprAstNode} child node.
+     * Gets the first {@link BoolExprAstNode} child node.
      *
-     * @return The first {@code <expr>} child node.
+     * @return The first {@code <boolexpr>} child node.
      */
     @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
-    public ExprAstNode getExpr1() {
-        return (ExprAstNode) childNodes.get(0);
+    public BoolExprAstNode getBoolExpr1() {
+        return (BoolExprAstNode) childNodes.get(0);
     }
 
     /**
-     * Gets the second {@link ExprAstNode} child node.
+     * Gets the second {@link BoolExprAstNode} child node.
      *
-     * @return The second {@code <expr>} child node.
+     * @return The second {@code <boolexpr>} child node.
      */
-    public ExprAstNode getExpr2() {
-        return (ExprAstNode) childNodes.get(1);
+    public BoolExprAstNode getBoolExpr2() {
+        return (BoolExprAstNode) childNodes.get(1);
     }
 
     @Override
@@ -45,6 +45,6 @@ public final class OrBoolExprAstNode extends BoolExprAstNode {
 
     @Override
     public String toString() {
-        return "||" + " " + getExpr1() + " " + getExpr2();
+        return "||" + " " + getBoolExpr1() + " " + getBoolExpr2();
     }
 }

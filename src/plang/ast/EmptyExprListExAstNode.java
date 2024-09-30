@@ -7,7 +7,7 @@ public final class EmptyExprListExAstNode extends ExprListExAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 1;
+    public static final int ID = 1;
 
     /**
      * Initializes a new {@link EmptyExprListExAstNode}.

@@ -34,6 +34,7 @@ public final class Parser {
 
     /**
      * Matches the lookahead token with the specified token and advances to the next token.
+     *
      * @param tokenKind The kind of token to match.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -56,6 +57,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <prog>} grammar rule.
+     *
      * @return A {@code <prog>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -81,6 +83,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <statlist>} grammar rule.
+     *
      * @return A {@code <statlist>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -106,6 +109,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <statlistex>} grammar rule.
+     *
      * @return A {@code <statlistex>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -131,6 +135,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <stat>} grammar rule.
+     *
      * @return A {@code <stat>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -194,6 +199,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <ifex>} grammar rule.
+     *
      * @return A {@code <ifex>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -219,6 +225,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <idlist>} grammar rule.
+     *
      * @return A {@code <idlist>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -241,6 +248,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <idlistex>} grammar rule.
+     *
      * @return A {@code <idlistex>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -277,12 +285,15 @@ public final class Parser {
 
     /**
      * Parses the {@code <boolexpr>} grammar rule.
+     *
      * @return A {@code <boolexpr>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
     private BoolExprAstNode parseBoolExpr() throws IOException {
         ExprAstNode expr1;
         ExprAstNode expr2;
+        BoolExprAstNode boolExpr1;
+        BoolExprAstNode boolExpr2;
 
         switch (lookahead.getKind()) {
             case EQUALITY:
@@ -295,7 +306,7 @@ public final class Parser {
                 match(TokenKind.INEQUALITY);
                 expr1 = parseExpr();
                 expr2 = parseExpr();
-                return new InEqBoolExprAstNode(expr1, expr2);
+                return new NeBoolExprAstNode(expr1, expr2);
 
             case LESS_THAN:
                 match(TokenKind.LESS_THAN);
@@ -323,20 +334,20 @@ public final class Parser {
 
             case LOGICAL_AND:
                 match(TokenKind.LOGICAL_AND);
-                expr1 = parseExpr();
-                expr2 = parseExpr();
-                return new AndBoolExprAstNode(expr1, expr2);
+                boolExpr1 = parseBoolExpr();
+                boolExpr2 = parseBoolExpr();
+                return new AndBoolExprAstNode(boolExpr1, boolExpr2);
 
             case LOGICAL_OR:
                 match(TokenKind.LOGICAL_OR);
-                expr1 = parseExpr();
-                expr2 = parseExpr();
-                return new OrBoolExprAstNode(expr1, expr2);
+                boolExpr1 = parseBoolExpr();
+                boolExpr2 = parseBoolExpr();
+                return new OrBoolExprAstNode(boolExpr1, boolExpr2);
 
             case LOGICAL_NOT:
                 match(TokenKind.LOGICAL_NOT);
-                expr1 = parseExpr();
-                return new NotBoolExprAstNode(expr1);
+                boolExpr1 = parseBoolExpr();
+                return new NotBoolExprAstNode(boolExpr1);
 
             default:
                 throwIOException("Unexpected token in boolean expression '" + lookahead.getKind() + "'");
@@ -348,6 +359,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <expr>} grammar rule.
+     *
      * @return A {@code <expr>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -362,20 +374,20 @@ public final class Parser {
                 match(TokenKind.LEFT_PARENTHESIS);
                 exprList = parseExprList();
                 match(TokenKind.RIGHT_PARENTHESIS);
-                return new PlusExprAstNode(exprList);
+                return new AddExprAstNode(exprList);
 
             case MINUS:
                 match(TokenKind.MINUS);
                 expr1 = parseExpr();
                 expr2 = parseExpr();
-                return new MinusExprAstNode(expr1, expr2);
+                return new SubExprAstNode(expr1, expr2);
 
             case ASTERISK:
                 match(TokenKind.ASTERISK);
                 match(TokenKind.LEFT_PARENTHESIS);
                 exprList = parseExprList();
                 match(TokenKind.RIGHT_PARENTHESIS);
-                return new MultiplyExprAstNode(exprList);
+                return new MulExprAstNode(exprList);
 
             case SLASH:
                 match(TokenKind.SLASH);
@@ -403,6 +415,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <exprlist>} grammar rule.
+     *
      * @return A {@code <exprlist>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
@@ -428,6 +441,7 @@ public final class Parser {
 
     /**
      * Parses the {@code <exprlistex>} grammar rule.
+     *
      * @return A {@code <exprlistex>} AST node.
      * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */

@@ -7,7 +7,7 @@ public final class AssignStatAstNode extends StatAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 0;
+    public static final int ID = 0;
 
     /**
      * Initializes a new {@link AssignStatAstNode}.

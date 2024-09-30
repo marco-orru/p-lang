@@ -7,25 +7,25 @@ public final class NotBoolExprAstNode extends BoolExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 3;
+    public static final int ID = 8;
 
     /**
      * Initializes a new {@link OrBoolExprAstNode}.
      *
-     * @param expr The {@code <expr>} child node.
+     * @param boolExpr The {@code <boolexpr>} child node.
      */
-    public NotBoolExprAstNode(ExprAstNode expr) {
-        super(expr);
+    public NotBoolExprAstNode(BoolExprAstNode boolExpr) {
+        super(boolExpr);
     }
 
     /**
-     * Gets the {@link ExprAstNode} child node.
+     * Gets the {@link BoolExprAstNode} child node.
      *
-     * @return The {@code <expr>} child node.
+     * @return The {@code <boolexpr>} child node.
      */
     @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
-    public ExprAstNode getExpr() {
-        return (ExprAstNode) childNodes.get(0);
+    public BoolExprAstNode getBoolExpr() {
+        return (BoolExprAstNode) childNodes.get(0);
     }
 
     @Override
@@ -35,6 +35,6 @@ public final class NotBoolExprAstNode extends BoolExprAstNode {
 
     @Override
     public String toString() {
-        return "!" + " " + getExpr();
+        return "!" + " " + getBoolExpr();
     }
 }

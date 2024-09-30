@@ -1,20 +1,20 @@
 package plang.ast;
 
 /**
- * Represents a plus {@code <expr>} AST node.
+ * Represents a multiply {@code <expr>} AST node.
  */
-public final class PlusExprAstNode extends ExprAstNode {
+public final class MulExprAstNode extends ExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 0;
+    public static final int ID = 2;
 
     /**
-     * Initializes a new {@link PlusExprAstNode}.
+     * Initializes a new {@link MulExprAstNode}.
      *
      * @param exprList The {@code <exprlist>} child node.
      */
-    public PlusExprAstNode(ExprListAstNode exprList) {
+    public MulExprAstNode(ExprListAstNode exprList) {
         super(exprList);
     }
 
@@ -35,6 +35,6 @@ public final class PlusExprAstNode extends ExprAstNode {
 
     @Override
     public String toString() {
-        return "+" + " " + "(" + " " + getExprList() + " " + ")";
+        return "*" + " " + "(" + " " + getExprList() + " " + ")";
     }
 }

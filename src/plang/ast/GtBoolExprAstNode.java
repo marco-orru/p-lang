@@ -7,7 +7,7 @@ public final class GtBoolExprAstNode extends BoolExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 6;
+    public static final int ID = 4;
 
     /**
      * Initializes a new {@link GtBoolExprAstNode}.

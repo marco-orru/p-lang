@@ -7,7 +7,7 @@ public final class IfStatAstNode extends StatAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 4;
+    public static final int ID = 4;
 
     /**
      * Initializes a new {@link IfStatAstNode}

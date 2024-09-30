@@ -7,7 +7,7 @@ public final class ElseIfExAstNode extends IfExAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 1;
+    public static final int ID = 1;
 
     /**
      * Initializes a new {@link ElseIfExAstNode}.

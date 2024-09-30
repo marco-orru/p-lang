@@ -9,7 +9,7 @@ public final class DefaultIdListExAstNode extends IdListExAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 0;
+    public static final int ID = 0;
 
     /**
      * The identifier token contained in this node
@@ -53,6 +53,6 @@ public final class DefaultIdListExAstNode extends IdListExAstNode {
 
     @Override
     public String toString() {
-        return "," + " " + identifier.getIdentifier() + " " + getIdListEx();
+        return "," + " " + identifier.getLexeme() + " " + getIdListEx();
     }
 }

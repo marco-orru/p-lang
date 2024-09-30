@@ -58,6 +58,6 @@ public final class IdListAstNode extends AstNode {
 
     @Override
     public String toString() {
-        return identifier.getIdentifier() + " " + getIdListEx();
+        return identifier.getLexeme() + " " + getIdListEx();
     }
 }

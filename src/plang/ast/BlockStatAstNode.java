@@ -7,7 +7,7 @@ public final class BlockStatAstNode extends StatAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 5;
+    public static final int ID = 5;
 
     /**
      * Initializes a new {@link BlockStatAstNode}.

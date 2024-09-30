@@ -1,13 +1,13 @@
 package plang.ast;
 
 /**
- * Represents a division {@code <expr>} AST node.
+ * Represents a divide {@code <expr>} AST node.
  */
 public final class DivExprAstNode extends ExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 3;
+    public static final int ID = 3;
 
     /**
      * Initializes a new {@link DivExprAstNode}.
