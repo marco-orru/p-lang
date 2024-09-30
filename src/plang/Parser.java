@@ -33,17 +33,13 @@ public final class Parser {
     }
 
     /**
-     * Updates the token lookahead with the next token from the lexer.
-     *
-     * @throws IOException If the lexer throws a {@link IOException}.
+     * Matches the lookahead token with the specified token and advances to the next token.
+     * @param tokenKind The kind of token to match.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
      */
-    private void move() throws IOException {
-        this.lookahead = lexer.nextToken();
-    }
-
     private void match(TokenKind tokenKind) throws IOException {
         if (lookahead.getKind() == tokenKind) {
-            if (tokenKind != TokenKind.END_OF_FILE) move();
+            if (tokenKind != TokenKind.END_OF_FILE) this.lookahead = lexer.nextToken();
         } else throwIOException("Unexpected token (expected '" + tokenKind + "', got '" + lookahead.getKind() + "')");
     }
 
@@ -54,10 +50,15 @@ public final class Parser {
      * @throws IOException If the lexer throws a {@link IOException} or an invalid token is found.
      */
     public AstNode parse() throws IOException {
-        move();
+        this.lookahead = lexer.nextToken();
         return parseProg();
     }
 
+    /**
+     * Parses the {@code <prog>} grammar rule.
+     * @return A {@code <prog>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private ProgAstNode parseProg() throws IOException {
         switch (lookahead.getKind()) {
             case KWD_ASSIGN:
@@ -78,6 +79,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <statlist>} grammar rule.
+     * @return A {@code <statlist>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private StatListAstNode parseStatList() throws IOException {
         switch (lookahead.getKind()) {
             case KWD_ASSIGN:
@@ -98,6 +104,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <statlistex>} grammar rule.
+     * @return A {@code <statlistex>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private StatListExAstNode parseStatListEx() throws IOException {
         switch (lookahead.getKind()) {
             case SEMICOLON:
@@ -118,6 +129,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <stat>} grammar rule.
+     * @return A {@code <stat>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private StatAstNode parseStat() throws IOException {
         IdListAstNode idList;
         BoolExprAstNode boolExpr;
@@ -176,6 +192,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <ifex>} grammar rule.
+     * @return A {@code <ifex>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private IfExAstNode parseIfEx() throws IOException {
         switch (lookahead.getKind()) {
             case KWD_END:
@@ -196,6 +217,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <idlist>} grammar rule.
+     * @return A {@code <idlist>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
     private IdListAstNode parseIdList() throws IOException {
         switch (lookahead.getKind()) {
@@ -213,6 +239,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <idlistex>} grammar rule.
+     * @return A {@code <idlistex>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private IdListExAstNode parseIdListEx() throws IOException {
         switch (lookahead.getKind()) {
             case COMMA:
@@ -244,6 +275,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <boolexpr>} grammar rule.
+     * @return A {@code <boolexpr>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private BoolExprAstNode parseBoolExpr() throws IOException {
         ExprAstNode expr1;
         ExprAstNode expr2;
@@ -310,6 +346,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <expr>} grammar rule.
+     * @return A {@code <expr>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private ExprAstNode parseExpr() throws IOException {
         ExprListAstNode exprList;
         ExprAstNode expr1;
@@ -360,6 +401,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <exprlist>} grammar rule.
+     * @return A {@code <exprlist>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private ExprListAstNode parseExprList() throws IOException {
         switch (lookahead.getKind()) {
             case PLUS:
@@ -380,6 +426,11 @@ public final class Parser {
         return null;
     }
 
+    /**
+     * Parses the {@code <exprlistex>} grammar rule.
+     * @return A {@code <exprlistex>} AST node.
+     * @throws IOException If an unexpected token is found, or if a lexer error occurred.
+     */
     private ExprListExAstNode parseExprListEx() throws IOException {
         switch (lookahead.getKind()) {
             case COMMA:
