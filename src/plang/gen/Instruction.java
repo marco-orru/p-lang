@@ -1,5 +1,7 @@
 package plang.gen;
 
+import java.util.Objects;
+
 /**
  * Represents an IJVM instruction, made of an opcode and an optional operand.
  *
@@ -43,7 +45,7 @@ public final class Instruction<T> implements CodeGenEntity {
      */
     public Instruction(OpCode opCode, T operand) {
         this.opCode = opCode;
-        this.operand = operand;
+        this.operand = Objects.requireNonNull(operand);
     }
 
     @SuppressWarnings("DataFlowIssue")

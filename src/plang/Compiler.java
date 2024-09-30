@@ -7,6 +7,8 @@ import plang.gen.OpCode;
 import plang.tokens.IdentifierToken;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Implements the P compiler.
@@ -59,6 +61,9 @@ public final class Compiler {
      */
     public static void main(String[] args) {
         try {
+            if (!Files.exists(Path.of(args[0])))
+                throw new IOException("Unable to find input file: " + args[0]);
+
             var compiler = new Compiler(args[0]);
             compiler.compile(args[1]);
         } catch (IOException e) {
@@ -271,13 +276,13 @@ public final class Compiler {
                 GtBoolExprAstNode gtBoolExpr = (GtBoolExprAstNode) boolExpr;
                 emitExprNode(gtBoolExpr.getExpr1());
                 emitExprNode(gtBoolExpr.getExpr2());
-                codeGen.addInstruction(OpCode.IF_LE);
+                codeGen.addInstruction(OpCode.IF_LE, falseLabel);
             }
             case GeBoolExprAstNode.ID -> {
                 GeBoolExprAstNode geBoolExpr = (GeBoolExprAstNode) boolExpr;
                 emitExprNode(geBoolExpr.getExpr1());
                 emitExprNode(geBoolExpr.getExpr2());
-                codeGen.addInstruction(OpCode.IF_LT);
+                codeGen.addInstruction(OpCode.IF_LT, falseLabel);
             }
             case AndBoolExprAstNode.ID -> {
                 AndBoolExprAstNode andBoolExpr = (AndBoolExprAstNode) boolExpr;
