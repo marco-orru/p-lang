@@ -140,11 +140,6 @@ public enum TokenKind {
     KWD_WHILE,
 
     /**
-     * The token is the {@code begin} keyword.
-     */
-    KWD_BEGIN,
-
-    /**
      * The token is the {@code end} keyword.
      */
     KWD_END,

@@ -257,7 +257,6 @@ public final class Lexer {
                         case "if" -> CommonTokens.get(TokenKind.KWD_IF);
                         case "else" -> CommonTokens.get(TokenKind.KWD_ELSE);
                         case "while" -> CommonTokens.get(TokenKind.KWD_WHILE);
-                        case "begin" -> CommonTokens.get(TokenKind.KWD_BEGIN);
                         case "end" -> CommonTokens.get(TokenKind.KWD_END);
                         case "print" -> CommonTokens.get(TokenKind.KWD_PRINT);
                         case "read" -> CommonTokens.get(TokenKind.KWD_READ);
