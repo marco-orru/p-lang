@@ -159,3 +159,8 @@ The following boolean expressions are available:
 + `@RELOP <expr_1> <expr_2>`: Evaluates to _true_ if the relational operator (`@RELOP`) applied to the provided expressions evaluates to `true`; otherwise, it evaluates to `false`.
 
 As mentioned before, expressions are in prefix form, and does not have any rule that specifies their precedence other than the order in which they appear.
+
+The compiler can be launched using the `main()` method in the `plang.Compiler` class, which expects two parameters:
+
++ The path of the input file, containing the source code to be compiled.
++ The path of the output file, which will contain the compiled source code.

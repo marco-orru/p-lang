@@ -60,17 +60,22 @@ public final class Compiler {
      * @param args The arguments.
      */
     public static void main(String[] args) {
-        try {
-            if (!Files.exists(Path.of(args[0])))
-                throw new IOException("Unable to find input file: " + args[0]);
+        if (args.length == 0)
+            System.err.println("The input file path shall be specified as the first argument.");
+        else if (args.length == 1)
+            System.err.println("The output file path shall be specified as the second argument.");
+        else {
+            try {
+                if (!Files.exists(Path.of(args[0])))
+                    throw new IOException("Unable to find input file: " + args[0]);
 
-            var compiler = new Compiler(args[0]);
-            compiler.compile(args[1]);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
+                var compiler = new Compiler(args[0]);
+                compiler.compile(args[1]);
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
-
     /**
      * Compiles the specified
      *
