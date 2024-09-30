@@ -21,6 +21,10 @@ public final class Lexer {
     private int line = 1;
     /** The current column number */
     private int column = 1;
+    /** The previous line number (i.e., the line number of the last read token). */
+    private int prevLine;
+    /** The previous column number (i.e., the column number of the last read token). */
+    private int prevColumn;
 
     /**
      * Initializes a new {@code Lexer} for the specified source file.
@@ -67,6 +71,9 @@ public final class Lexer {
      * @throws IOException If an invalid character is encountered.
      */
     public Token nextToken() throws IOException {
+        prevLine = line;
+        prevColumn = column;
+
         while (current() == ' ' || current() == '\n' || current() == '\t' || current() == '\r')
             advance();
 
@@ -259,11 +266,47 @@ public final class Lexer {
         return null;
     }
 
+    /**
+     * Throws an IO exception with extended info about a custom position in the source file and a custom message.
+     * @param message A message that describes the cause of the exception.
+     * @param line The line number at which the exception is thrown.
+     * @param column The column number at which the exception is thrown.
+     * @throws IOException Always.
+     */
     private void throwIOException(int line, int column, String message) throws IOException {
         throw new IOException("<" + fileName + "[" + line + ":" + column + "]> " + message);
     }
 
+    /**
+     * Throws an IO exception with extended info about the current position in the source file and a custom message.
+     * @param message A message that describes the cause of the exception.
+     * @throws IOException Always.
+     */
     private void throwIOException(String message) throws IOException {
         throwIOException(line, column, message);
+    }
+
+    /**
+     * Gets the line number of the last read token.
+     * @return The line number of the last read token.
+     */
+    public int getLastLine() {
+        return this.prevLine;
+    }
+
+    /**
+     * Gets the column number of the last read token.
+     * @return The column number of the last read token.
+     */
+    public int getLastColumn() {
+        return this.prevColumn;
+    }
+
+    /**
+     * Gets the name of the P source file.
+     * @return The name of the P source file.
+     */
+    public String getFileName() {
+        return this.fileName;
     }
 }
