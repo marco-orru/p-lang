@@ -1,12 +1,15 @@
 package plang.ast;
 
 public final class StatListAstNode extends AstNode {
-    /** The ID of this production */
+    /**
+     * The ID of this production
+     */
     public final int ID = 0;
 
     /**
      * Initializes a new {@link StatListAstNode}.
-     * @param stat The {@code <stat>} child node.
+     *
+     * @param stat       The {@code <stat>} child node.
      * @param statListEx The {@code <statlistex>} child node.
      */
     public StatListAstNode(StatAstNode stat, StatListExAstNode statListEx) {
@@ -15,6 +18,7 @@ public final class StatListAstNode extends AstNode {
 
     /**
      * Gets the {@link StatAstNode} child node.
+     *
      * @return The {@code <stat>} child node.
      */
     @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
@@ -24,6 +28,7 @@ public final class StatListAstNode extends AstNode {
 
     /**
      * Gets the {@link StatListExAstNode} child node.
+     *
      * @return The {@code <statlistex>} child node.
      */
     public StatListExAstNode getStatListEx() {
@@ -38,5 +43,10 @@ public final class StatListAstNode extends AstNode {
     @Override
     public int getProductionId() {
         return ID;
+    }
+
+    @Override
+    public String toString() {
+        return getStat() + " " + getStatListEx();
     }
 }

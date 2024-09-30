@@ -4,11 +4,14 @@ package plang.tokens;
  * Represents a token.
  */
 public class Token {
-    /** The kind of token. */
+    /**
+     * The kind of token.
+     */
     private final TokenKind kind;
 
     /**
      * Initializes a new {@link Token} of the specified kind.
+     *
      * @param kind The kind of token.
      */
     public Token(TokenKind kind) {
@@ -17,6 +20,7 @@ public class Token {
 
     /**
      * Gets the kind of token.
+     *
      * @return The kind of token.
      */
     public TokenKind getKind() {
@@ -25,6 +29,7 @@ public class Token {
 
     /**
      * Gets a string representation of this token.
+     *
      * @return A string representation of the token.
      */
     @Override

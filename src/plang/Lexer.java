@@ -4,6 +4,7 @@ import plang.tokens.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -11,28 +12,43 @@ import java.nio.file.Paths;
  */
 @SuppressWarnings("SwitchStatementWithTooFewBranches")
 public final class Lexer {
-    /** The name of the source file */
+    /**
+     * The name of the source file
+     */
     private final String fileName;
-    /** The source code to be tokenized */
+    /**
+     * The source code to be tokenized
+     */
     private final String source;
-    /** The position of the cursor into the source string */
+    /**
+     * The position of the cursor into the source string
+     */
     private int position;
-    /** The current line number */
+    /**
+     * The current line number
+     */
     private int line = 1;
-    /** The current column number */
+    /**
+     * The current column number
+     */
     private int column = 1;
-    /** The previous line number (i.e., the line number of the last read token). */
+    /**
+     * The previous line number (i.e., the line number of the last read token).
+     */
     private int prevLine;
-    /** The previous column number (i.e., the column number of the last read token). */
+    /**
+     * The previous column number (i.e., the column number of the last read token).
+     */
     private int prevColumn;
 
     /**
      * Initializes a new {@code Lexer} for the specified source file.
+     *
      * @param filePath The path of the P source code file.
      * @throws IOException If an I/O error occurs reading from the file.
      */
     public Lexer(String filePath) throws IOException {
-        var path = Paths.get(filePath);
+        Path path = Paths.get(filePath);
         this.fileName = path.getFileName().toString();
         this.source = Files.readString(path);
     }
@@ -45,17 +61,17 @@ public final class Lexer {
         if (position >= source.length())
             return;
 
-        var c = source.charAt(position++);
+        char c = source.charAt(position++);
 
         if (c == '\n') {
             line++;
             column = 1;
-        }
-        else column++;
+        } else column++;
     }
 
     /**
      * Gets the current character from the source code.
+     *
      * @return The current character, or {@code -1} if the source code has already been consumed.
      */
     private char current() {
@@ -67,6 +83,7 @@ public final class Lexer {
 
     /**
      * Consumes the next token from the source code.
+     *
      * @return The next token
      * @throws IOException If an invalid character is encountered.
      */
@@ -123,9 +140,9 @@ public final class Lexer {
                         yield nextToken();
 
                     case '*':
-                        var state = 0; // 0 -> in comment; 1 -> found asterisk; 2 -> end
-                        var currentLine = line;
-                        var currentColumn = column;
+                        int state = 0; // 0 -> in comment; 1 -> found asterisk; 2 -> end
+                        int currentLine = line;
+                        int currentColumn = column;
 
                         do {
                             advance();
@@ -218,18 +235,18 @@ public final class Lexer {
                 };
 
             default:
-                var sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder();
 
                 if (Character.isLetter(current()) || current() == '_') {
-                    var currentLine = line;
-                    var currentColumn = column;
+                    int currentLine = line;
+                    int currentColumn = column;
 
                     do {
                         sb.append(current());
                         advance();
                     } while (Character.isLetterOrDigit(current()) || current() == '_');
 
-                    var content = sb.toString();
+                    String content = sb.toString();
 
                     if (content.chars().allMatch(value -> value == '_'))
                         throwIOException(currentLine, currentColumn, "An identifier cannot consist solely of the character '_'");
@@ -246,8 +263,7 @@ public final class Lexer {
                         case "read" -> CommonTokens.get(TokenKind.KWD_READ);
                         default -> new IdentifierToken(content);
                     };
-                }
-                else if (Character.isDigit(current())) {
+                } else if (Character.isDigit(current())) {
                     do {
                         sb.append(current());
                         advance();
@@ -268,9 +284,10 @@ public final class Lexer {
 
     /**
      * Throws an IO exception with extended info about a custom position in the source file and a custom message.
+     *
      * @param message A message that describes the cause of the exception.
-     * @param line The line number at which the exception is thrown.
-     * @param column The column number at which the exception is thrown.
+     * @param line    The line number at which the exception is thrown.
+     * @param column  The column number at which the exception is thrown.
      * @throws IOException Always.
      */
     private void throwIOException(int line, int column, String message) throws IOException {
@@ -279,6 +296,7 @@ public final class Lexer {
 
     /**
      * Throws an IO exception with extended info about the current position in the source file and a custom message.
+     *
      * @param message A message that describes the cause of the exception.
      * @throws IOException Always.
      */
@@ -288,6 +306,7 @@ public final class Lexer {
 
     /**
      * Gets the line number of the last read token.
+     *
      * @return The line number of the last read token.
      */
     public int getLastLine() {
@@ -296,6 +315,7 @@ public final class Lexer {
 
     /**
      * Gets the column number of the last read token.
+     *
      * @return The column number of the last read token.
      */
     public int getLastColumn() {
@@ -304,6 +324,7 @@ public final class Lexer {
 
     /**
      * Gets the name of the P source file.
+     *
      * @return The name of the P source file.
      */
     public String getFileName() {

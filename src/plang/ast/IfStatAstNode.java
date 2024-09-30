@@ -4,14 +4,17 @@ package plang.ast;
  * Represents a if {@code <stat>} AST node.
  */
 public final class IfStatAstNode extends StatAstNode {
-    /** The ID of this production */
+    /**
+     * The ID of this production
+     */
     public final int ID = 4;
 
     /**
      * Initializes a new {@link IfStatAstNode}
+     *
      * @param boolExpr The {@code <boolexpr>} child node.
-     * @param stat The {@code <stat>} child node.
-     * @param ifEx The {@code <ifex>} child node.
+     * @param stat     The {@code <stat>} child node.
+     * @param ifEx     The {@code <ifex>} child node.
      */
     public IfStatAstNode(BoolExprAstNode boolExpr, StatAstNode stat, IfExAstNode ifEx) {
         super(boolExpr, stat, ifEx);
@@ -19,6 +22,7 @@ public final class IfStatAstNode extends StatAstNode {
 
     /**
      * Gets the {@link BoolExprAstNode} child node.
+     *
      * @return The {@code <boolexpr>} child node.
      */
     @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
@@ -28,6 +32,7 @@ public final class IfStatAstNode extends StatAstNode {
 
     /**
      * Gets the {@link StatAstNode} child node.
+     *
      * @return The {@code <stat>} child node.
      */
     public StatAstNode getStat() {
@@ -36,6 +41,7 @@ public final class IfStatAstNode extends StatAstNode {
 
     /**
      * Gets the {@link IfExAstNode} child node.
+     *
      * @return The {@code <ifex>} child node.
      */
     public IfExAstNode getIfEx() {
@@ -45,5 +51,10 @@ public final class IfStatAstNode extends StatAstNode {
     @Override
     public int getProductionId() {
         return ID;
+    }
+
+    @Override
+    public String toString() {
+        return "if" + " " + "(" + " " + getBoolExpr() + " " + ")" + " " + getStat() + " " + getIfEx();
     }
 }

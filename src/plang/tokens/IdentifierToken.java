@@ -7,11 +7,14 @@ package plang.tokens;
  * that cannot start with a digit and cannot be composed of only the underscore symbol.
  */
 public class IdentifierToken extends Token {
-    /** The identifier lexeme */
+    /**
+     * The identifier lexeme
+     */
     private final String identifier;
 
     /**
      * Initializes a new {@link IdentifierToken} with the specified identifier lexeme.
+     *
      * @param identifier The identifier lexeme.
      */
     public IdentifierToken(String identifier) {
@@ -21,6 +24,7 @@ public class IdentifierToken extends Token {
 
     /**
      * Gets the identifier lexeme.
+     *
      * @return The identifier lexeme.
      */
     public String getIdentifier() {

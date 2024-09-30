@@ -8,11 +8,14 @@ package plang.tokens;
  * sequences of digits.
  */
 public class NumberToken extends Token {
-    /** The integral value */
+    /**
+     * The integral value
+     */
     private final int value;
 
     /**
      * Initializes a new {@link NumberToken} with the specified integral value.
+     *
      * @param value The integral value.
      */
     public NumberToken(int value) {
@@ -22,6 +25,7 @@ public class NumberToken extends Token {
 
     /**
      * Gets the value of this numerical token.
+     *
      * @return The integral value.
      */
     public int getValue() {

@@ -4,7 +4,9 @@ package plang.ast;
  * Represents an empty {@code <statlistex>} AST node.
  */
 public final class EmptyStatListExAstNode extends StatListExAstNode {
-    /** The ID of this production */
+    /**
+     * The ID of this production
+     */
     public final int ID = 1;
 
     /**
@@ -17,5 +19,10 @@ public final class EmptyStatListExAstNode extends StatListExAstNode {
     @Override
     public int getProductionId() {
         return ID;
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 }

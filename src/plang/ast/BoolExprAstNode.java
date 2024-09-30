@@ -1,73 +1,17 @@
 package plang.ast;
 
-import plang.tokens.Token;
-import plang.tokens.TokenKind;
-
-/**
- * Represents a {@code <boolexpr>} AST node.
- */
-public final class BoolExprAstNode extends AstNode {
-    /** The ID of this production */
-    public final int ID = 0;
-
-    /** The boolean operator contained in this node. */
-    private final Token booleanOperator;
-
+public abstract class BoolExprAstNode extends AstNode {
     /**
-     * Initializes a new {@link BoolExprAstNode}.
-     * @param booleanOperator The boolean operator contained in this node.
-     * @param expr1 The first {@code <expr>} child node.
-     * @param expr2 The second {@code <expr>} child node.
+     * Initializes a new {@link BoolExprAstNode} with the specified list of child nodes.
+     *
+     * @param childNodes The child nodes of the AST node.
      */
-    public BoolExprAstNode(Token booleanOperator, ExprAstNode expr1, ExprAstNode expr2) {
-        super(expr1, expr2);
-
-        switch (booleanOperator.getKind()) {
-            case EQUALITY:
-            case INEQUALITY:
-            case GREATER_THAN:
-            case GREATER_THAN_EQUAL:
-            case LESS_THAN:
-            case LESS_THAN_EQUAL:
-                this.booleanOperator = booleanOperator;
-                break;
-            default:
-                throw new IllegalArgumentException("The specified token is not a boolean operator");
-        }
-    }
-
-    /**
-     * Gets the boolean operator contained in this node
-     * @return The boolean operator contained in this node.
-     */
-    public Token getBooleanOperator() {
-        return booleanOperator;
-    }
-
-    /**
-     * Gets the first {@link ExprAstNode} child node.
-     * @return The first {@code <expr>} child node.
-     */
-    @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
-    public ExprAstNode getExpr1() {
-        return (ExprAstNode) childNodes.get(0);
-    }
-
-    /**
-     * Gets the second {@link ExprAstNode} child node.
-     * @return The second {@code <expr>} child node.
-     */
-    public ExprAstNode getExpr2() {
-        return (ExprAstNode) childNodes.get(1);
+    protected BoolExprAstNode(AstNode... childNodes) {
+        super(childNodes);
     }
 
     @Override
-    public AstNodeType getType() {
+    public final AstNodeType getType() {
         return AstNodeType.BOOL_EXPR;
-    }
-
-    @Override
-    public int getProductionId() {
-        return ID;
     }
 }

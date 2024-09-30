@@ -6,6 +6,7 @@ package plang.ast;
 public abstract class IfExAstNode extends AstNode {
     /**
      * Initializes a new {@link IfExAstNode} with the specified list of child nodes.
+     *
      * @param childNodes The child nodes of the AST node.
      */
     protected IfExAstNode(AstNode... childNodes) {

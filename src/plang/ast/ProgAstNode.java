@@ -4,11 +4,14 @@ package plang.ast;
  * Represents a {@code <prog>} AST node.
  */
 public final class ProgAstNode extends AstNode {
-    /** The ID of this production */
+    /**
+     * The ID of this production
+     */
     public final int ID = 0;
 
     /**
      * Initializes a new {@link ProgAstNode}.
+     *
      * @param statList The {@code <statlist>} child node.
      */
     public ProgAstNode(StatListAstNode statList) {
@@ -17,6 +20,7 @@ public final class ProgAstNode extends AstNode {
 
     /**
      * Gets the {@link StatListAstNode} child node.
+     *
      * @return The {@code <statlist>} child node.
      */
     @SuppressWarnings("SequencedCollectionMethodCanBeUsed")
@@ -32,5 +36,10 @@ public final class ProgAstNode extends AstNode {
     @Override
     public int getProductionId() {
         return ID;
+    }
+
+    @Override
+    public String toString() {
+        return getStatList() + "$";
     }
 }

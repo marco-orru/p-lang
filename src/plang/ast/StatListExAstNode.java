@@ -6,6 +6,7 @@ package plang.ast;
 public abstract class StatListExAstNode extends AstNode {
     /**
      * Initializes a new {@link StatListExAstNode} with the specified list of child nodes.
+     *
      * @param childNodes The child nodes of the AST node.
      */
     protected StatListExAstNode(AstNode... childNodes) {

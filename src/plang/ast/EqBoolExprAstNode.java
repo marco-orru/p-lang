@@ -1,27 +1,22 @@
 package plang.ast;
 
 /**
- * Represents a division {@code <expr>} AST node.
+ * Represents an equality {@code <boolexpr>} AST node.
  */
-public final class DivExprAstNode extends ExprAstNode {
+public final class EqBoolExprAstNode extends BoolExprAstNode {
     /**
      * The ID of this production
      */
-    public final int ID = 3;
+    public final int ID = 0;
 
     /**
-     * Initializes a new {@link DivExprAstNode}.
+     * Initializes a new {@link EqBoolExprAstNode}.
      *
      * @param expr1 The first {@code <expr>} child node.
      * @param expr2 The second {@code <expr>} child node.
      */
-    public DivExprAstNode(ExprAstNode expr1, ExprAstNode expr2) {
+    public EqBoolExprAstNode(ExprAstNode expr1, ExprAstNode expr2) {
         super(expr1, expr2);
-    }
-
-    @Override
-    public int getProductionId() {
-        return ID;
     }
 
     /**
@@ -44,7 +39,12 @@ public final class DivExprAstNode extends ExprAstNode {
     }
 
     @Override
+    public int getProductionId() {
+        return ID;
+    }
+
+    @Override
     public String toString() {
-        return "/" + " " + getExpr1() + " / " + getExpr2();
+        return "==" + " " + getExpr1() + " " + getExpr2();
     }
 }
